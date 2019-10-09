@@ -67,6 +67,7 @@ export default class Database {
 
 	post = this.create
 	put = this.replace
+	set = this.replace
 	patch = this.update
 }
 

@@ -109,7 +109,7 @@ export default class Database {
 	 * 
 	 * If there is no record with ID `recordId`, this creates a new record with ID `recordID` and the specified data
 	 * 
-	 * Equivalent to `put`
+	 * Equivalent to `set` and `put`
 	 * 
 	 * @param recordList The list in which the record is located
 	 * @param recordId The ID of the record
@@ -214,7 +214,7 @@ export default class Database {
 	 * 
 	 * If there is no record with ID `recordId`, this creates a new record with ID `recordID` and the specified data
 	 * 
-	 * Equivalent to `replace`
+	 * Equivalent to `set` and `replace`
 	 * 
 	 * @param recordList The list in which the record is located
 	 * @param recordId The ID of the record
@@ -230,6 +230,28 @@ export default class Database {
 	 * // New: { id: 'abc123', name: 'Ken Mueller' }
 	 */
 	put(recordList: string, recordId: string, data: RecordData): Promise<Record>
+
+	/**
+	 * Replaces the data of the record with ID `recordId`
+	 * 
+	 * If there is no record with ID `recordId`, this creates a new record with ID `recordID` and the specified data
+	 * 
+	 * Equivalent to `replace` and `put`
+	 * 
+	 * @param recordList The list in which the record is located
+	 * @param recordId The ID of the record
+	 * @param data The new data of the record
+	 * 
+	 * @returns The newly updated record
+	 * 
+	 * @example
+	 * // Old: { id: 'abc123', name: 'Scott Mueller', age: 43 }
+	 * 
+	 * await db.replace('users', 'abc123', { name: 'Ken Mueller' })
+	 * 
+	 * // New: { id: 'abc123', name: 'Ken Mueller' }
+	 */
+	set(recordList: string, recordId: string, data: RecordData): Promise<Record>
 
 	/**
 	 * Updates the record with ID `recordId` by merging the new data and old data

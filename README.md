@@ -34,3 +34,9 @@ const { Database } = require('restful-db')
 ```javascript
 const { Database } = restfulDb
 ```
+
+## Initialization
+
+```javascript
+const db = new Database('PROJECT_ID')
+```
