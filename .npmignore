@@ -1,0 +1,9 @@
+**/.DS_Store
+tsconfig.json
+tslint.json
+src/
+tests/
+lib/*.js.map
+.gitignore
+.npmignore
+README.md
