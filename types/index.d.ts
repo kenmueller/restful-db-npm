@@ -283,6 +283,8 @@ export { Database }
  * 
  * Every **Record** has an `id` along with the actual record data.
  * 
+ * @typedef T The RecordData that this Record was created from
+ * 
  * @example
  * const userRecord = await db.get('users', '1234')
  * 
@@ -293,13 +295,7 @@ export { Database }
  * console.log(userRecord.name)
  * // => 'Ken Mueller'
  */
-export interface Record {
-	/**
-	 * A unique ID for this record. This property is special and cannot be overridden.
-	 */
-	id: string
-	[key: string]: any
-}
+export type Record<T = RecordData> = { id: string } & T
 
 /**
  * This is passed in to `create`, `update`, and `replace` requests.
@@ -311,9 +307,7 @@ export interface Record {
  * 
  * db.create('users', data)
  */
-export interface RecordData {
-	[key: string]: any
-}
+export type RecordData = { [key: string]: any }
 
 /**
  * The base URL of all database requests

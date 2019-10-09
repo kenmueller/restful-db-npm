@@ -26,7 +26,7 @@ export default class Database {
 		return dataFromRequest(axios.get(`${this.baseUrl}/${recordList}/${recordId}`)).catch(() => null)
 	}
 
-	create = (recordList: string, data: RecordData): Promise<Record> => {
+	create = <T = RecordData>(recordList: string, data: T): Promise<Record<T>> => {
 		if (!recordList)
 			return Promise.reject('`recordList` cannot be empty')
 		if (typeof data !== 'object')
@@ -34,7 +34,7 @@ export default class Database {
 		return dataFromRequest(axios.post(`${this.baseUrl}/${recordList}`, data))
 	}
 
-	replace = (recordList: string, recordId: string, data: RecordData): Promise<Record> => {
+	replace = <T = RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>> => {
 		if (!recordList)
 			return Promise.reject('`recordList` cannot be empty')
 		if (!recordId)
@@ -44,7 +44,7 @@ export default class Database {
 		return dataFromRequest(axios.put(`${this.baseUrl}/${recordList}/${recordId}`, data))
 	}
 
-	update = (recordList: string, recordId: string, data: RecordData): Promise<Record> => {
+	update = <T = RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>> => {
 		if (!recordList)
 			return Promise.reject('`recordList` cannot be empty')
 		if (!recordId)
