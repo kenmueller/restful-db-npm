@@ -1,8 +1,14 @@
 {
 	"name": "restful-db",
-	"version": "1.0.1",
-	"description": "Restful DB",
+	"version": "1.0.2",
+	"description": "A speedy restful database to use with zero setup",
 	"main": "lib/index.js",
+	"types": "types/index.d.ts",
+	"directories": {
+		"lib": "lib",
+		"types": "types",
+		"test": "tests"
+	},
 	"scripts": {
 		"build": "node_modules/.bin/tsc",
 		"test": "node_modules/.bin/jest --verbose tests"
@@ -15,6 +21,27 @@
 		"tslint": "^5.20.0",
 		"typescript": "^3.6.3"
 	},
+	"homepage": "https://restful-db.web.app",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/kenmueller/restful-db-npm.git"
+	},
 	"author": "Ken Mueller",
-	"license": "MIT"
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/kenmueller/restful-db/issues"
+	},
+	"keywords": [
+		"restful db",
+		"restful",
+		"easy db",
+		"restful-db",
+		"rest api",
+		"rest database",
+		"database",
+		"rest",
+		"rest api database",
+		"rest api db",
+		"ken mueller"
+	]
 }

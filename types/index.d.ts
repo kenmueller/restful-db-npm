@@ -293,7 +293,13 @@ export { Database }
  * console.log(userRecord.name)
  * // => 'Ken Mueller'
  */
-export type Record = { id: string, [key: string]: any }
+export interface Record {
+	/**
+	 * A unique ID for this record. This property is special and cannot be overridden.
+	 */
+	id: string
+	[key: string]: any
+}
 
 /**
  * This is passed in to `create`, `update`, and `replace` requests.
@@ -301,9 +307,13 @@ export type Record = { id: string, [key: string]: any }
  * An object with keys of type `string`
  * 
  * @example
- * db.create('users', { name: 'Ken Mueller', age: 13 })
+ * const data: RecordData = { name: 'Ken Mueller', age: 13 }
+ * 
+ * db.create('users', data)
  */
-export type RecordData = { [key: string]: any }
+export interface RecordData {
+	[key: string]: any
+}
 
 /**
  * The base URL of all database requests
