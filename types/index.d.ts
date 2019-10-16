@@ -102,7 +102,7 @@ export default class Database {
 	 * console.log(userRecord)
 	 * // => { id: 'abc123', name: 'Ken Mueller' }
 	 */
-	create(recordList: string, data: RecordData): Promise<Record>
+	create<T extends RecordData>(recordList: string, data: T): Promise<Record<T>>
 
 	/**
 	 * Replaces the data of the record with ID `recordId`
@@ -124,7 +124,7 @@ export default class Database {
 	 * 
 	 * // New: { id: 'abc123', name: 'Ken Mueller' }
 	 */
-	replace(recordList: string, recordId: string, data: RecordData): Promise<Record>
+	replace<T extends RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>>
 
 	/**
 	 * Updates the record with ID `recordId` by merging the new data and old data
@@ -146,7 +146,7 @@ export default class Database {
 	 * 
 	 * // New: { id: 'abc123', name: 'Ken Mueller', age: 43 }
 	 */
-	update(recordList: string, recordId: string, data: RecordData): Promise<Record>
+	update<T extends RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>>
 
 	/**
 	 * @variation 1
@@ -207,7 +207,7 @@ export default class Database {
 	 * console.log(userRecord)
 	 * // => { id: 'abc123', name: 'Ken Mueller' }
 	 */
-	post(recordList: string, data: RecordData): Promise<Record>
+	post<T extends RecordData>(recordList: string, data: T): Promise<Record<T>>
 
 	/**
 	 * Replaces the data of the record with ID `recordId`
@@ -229,7 +229,7 @@ export default class Database {
 	 * 
 	 * // New: { id: 'abc123', name: 'Ken Mueller' }
 	 */
-	put(recordList: string, recordId: string, data: RecordData): Promise<Record>
+	put<T extends RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>>
 
 	/**
 	 * Replaces the data of the record with ID `recordId`
@@ -251,7 +251,7 @@ export default class Database {
 	 * 
 	 * // New: { id: 'abc123', name: 'Ken Mueller' }
 	 */
-	set(recordList: string, recordId: string, data: RecordData): Promise<Record>
+	set<T extends RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>>
 
 	/**
 	 * Updates the record with ID `recordId` by merging the new data and old data
@@ -273,7 +273,7 @@ export default class Database {
 	 * 
 	 * // New: { id: 'abc123', name: 'Ken Mueller', age: 43 }
 	 */
-	patch(recordList: string, recordId: string, data: RecordData): Promise<Record>
+	patch<T extends RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>>
 }
 
 export { Database }

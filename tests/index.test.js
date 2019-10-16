@@ -151,6 +151,32 @@ it('returns null for an undefined user', async done => {
 	}
 }, TEST_TIMEOUT)
 
+it('returns false for a nonexistent user', async done => {
+	try {
+		const response = await db.exists('users', '123')
+		console.log(response)
+		if (response)
+			done.fail('db.exists(recordList, recordId) did not return false')
+		else
+			done()
+	} catch (error) {
+		done.fail(error)
+	}
+}, TEST_TIMEOUT)
+
+it('returns true for an existing user', async done => {
+	try {
+		const response = await db.exists('users', userId)
+		console.log(response)
+		if (response)
+			done()
+		else
+			done.fail('db.exists(recordList, recordId) did not return true')
+	} catch (error) {
+		done.fail(error)
+	}
+}, TEST_TIMEOUT)
+
 it('deletes a user', async done => {
 	try {
 		const response = await db.delete('users', userId)
