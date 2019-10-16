@@ -147,6 +147,50 @@ export default class Database {
 	 * // New: { id: 'abc123', name: 'Ken Mueller', age: 43 }
 	 */
 	update<T extends RecordData>(recordList: string, recordId: string, data: T): Promise<Record<T>>
+	
+	/**
+	 * @variation 1
+	 * 
+	 * @returns `true` if you have any data in your database, otherwise `false`
+	 * 
+	 * @example
+	 * const databaseExists = await db.exists()
+	 * 
+	 * console.log(databaseExists)
+	 * // => true
+	 */
+	exists(): Promise<boolean>
+
+	/**
+	 * @variation 2
+	 * 
+	 * @param recordList The record list that you want to check existance for, like `'users'`, or `'rooms'`
+	 * 
+	 * @returns `true` if you have any records in `recordList`, otherwise `false`
+	 * 
+	 * @example
+	 * const hasAnyUsers = await db.exists('users')
+	 * 
+	 * console.log(hasAnyUsers)
+	 * // => false
+	 */
+	exists(recordList: string): Promise<boolean>
+
+	/**
+	 * @variation 3
+	 * 
+	 * @param recordList The record list that `recordId` is located in, like `'users'`, or `'rooms'`
+	 * @param recordId The ID of the record inside `recordList` that you want to check existance for
+	 * 
+	 * @returns `true` if the specified record exists, otherwise `false`
+	 * 
+	 * @example
+	 * const userExists = await db.exists('users', 'ghi789')
+	 * 
+	 * console.log(userExists)
+	 * // => false
+	 */
+	exists(recordList: string, recordId: string): Promise<boolean>
 
 	/**
 	 * @variation 1
@@ -308,6 +352,18 @@ export type Record<T = RecordData> = { id: string } & T
  * db.create('users', data)
  */
 export type RecordData = { [key: string]: any }
+
+/**
+ * This is returned from a `get()` request (without any parameters).
+ * 
+ * An object with keys of type `string` and values of type `Record[]`
+ * 
+ * @example
+ * const data = db.get()
+ * 
+ * // `data` is of type `DatabaseData`
+ */
+export type DatabaseData = { [recordList: string]: Record[] }
 
 /**
  * The base URL of all database requests

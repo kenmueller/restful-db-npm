@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 
-import { Record, RecordData } from '../types'
+import { Record, RecordData, DatabaseData } from '../types'
 import { API_BASE_URL } from './constants'
 
 export default class {
@@ -14,7 +14,7 @@ export default class {
 		this.baseUrl = `${API_BASE_URL}/${projectId}`
 	}
 
-	get = (recordList?: string, recordId?: string): Promise<{ [recordList: string]: Record[] } | Record[] | Record | null> => {
+	get = (recordList?: string, recordId?: string): Promise<DatabaseData | Record[] | Record | null> => {
 		if (recordList === undefined)
 			return dataFromRequest(axios.get(this.baseUrl))
 		if (!recordList)
@@ -54,10 +54,21 @@ export default class {
 		return dataFromRequest(axios.patch(`${this.baseUrl}/${recordList}/${recordId}`, data))
 	}
 
-	exists = (recordList: string, recordId: string): Promise<boolean> =>
-		this.get(recordList, recordId).then(data =>
-			data !== null
-		)
+	exists = (recordList?: string, recordId?: string): Promise<boolean> => {
+		if (recordList === undefined)
+			return this.get().then(data =>
+				Boolean(Object.keys(data as DatabaseData).length)
+			)
+		if (!recordList)
+			return Promise.reject('`recordList` cannot be empty')
+		if (recordId === undefined)
+			return this.get(recordList).then(data =>
+				Boolean((data as Record[]).length)
+			)
+		if (!recordId)
+			return Promise.reject('`recordId` cannot be empty')
+		return this.get(recordList, recordId).then(Boolean)
+	}
 
 	delete = (recordList?: string, recordId?: string): Promise<void> => {
 		if (recordList === undefined)
